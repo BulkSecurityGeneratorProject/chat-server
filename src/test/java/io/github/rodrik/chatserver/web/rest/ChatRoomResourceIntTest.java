@@ -145,6 +145,23 @@ public class ChatRoomResourceIntTest {
         List<ChatRoom> chatRoomList = chatRoomRepository.findAll();
         assertThat(chatRoomList).hasSize(databaseSizeBeforeTest);
     }
+    @Test
+    @Transactional
+    public void checkOrganizationIsRequired() throws Exception {
+        int databaseSizeBeforeTest = chatRoomRepository.findAll().size();
+        // set the field null
+        chatRoom.setOrganization(null);
+
+        // Create the ChatRoom, which fails.
+
+        restChatRoomMockMvc.perform(post("/api/chat-rooms")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(chatRoom)))
+            .andExpect(status().isBadRequest());
+
+        List<ChatRoom> chatRoomList = chatRoomRepository.findAll();
+        assertThat(chatRoomList).hasSize(databaseSizeBeforeTest);
+    }
 
     @Test
     @Transactional

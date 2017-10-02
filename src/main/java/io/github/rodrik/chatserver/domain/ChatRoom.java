@@ -30,7 +30,8 @@ public class ChatRoom implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(optional = false)
     private Organization organization;
 
     @OneToMany(mappedBy = "chatRoom")
