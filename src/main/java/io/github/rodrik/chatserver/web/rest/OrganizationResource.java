@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -43,7 +44,7 @@ public class OrganizationResource {
      */
     @PostMapping("/organizations")
     @Timed
-    public ResponseEntity<Organization> createOrganization(@RequestBody Organization organization) throws URISyntaxException {
+    public ResponseEntity<Organization> createOrganization(@Valid @RequestBody Organization organization) throws URISyntaxException {
         log.debug("REST request to save Organization : {}", organization);
         if (organization.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new organization cannot already have an ID")).body(null);
@@ -65,7 +66,7 @@ public class OrganizationResource {
      */
     @PutMapping("/organizations")
     @Timed
-    public ResponseEntity<Organization> updateOrganization(@RequestBody Organization organization) throws URISyntaxException {
+    public ResponseEntity<Organization> updateOrganization(@Valid @RequestBody Organization organization) throws URISyntaxException {
         log.debug("REST request to update Organization : {}", organization);
         if (organization.getId() == null) {
             return createOrganization(organization);

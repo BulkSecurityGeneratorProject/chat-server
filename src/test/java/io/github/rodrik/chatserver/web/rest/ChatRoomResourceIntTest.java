@@ -130,6 +130,24 @@ public class ChatRoomResourceIntTest {
 
     @Test
     @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = chatRoomRepository.findAll().size();
+        // set the field null
+        chatRoom.setName(null);
+
+        // Create the ChatRoom, which fails.
+
+        restChatRoomMockMvc.perform(post("/api/chat-rooms")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(chatRoom)))
+            .andExpect(status().isBadRequest());
+
+        List<ChatRoom> chatRoomList = chatRoomRepository.findAll();
+        assertThat(chatRoomList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllChatRooms() throws Exception {
         // Initialize the database
         chatRoomRepository.saveAndFlush(chatRoom);

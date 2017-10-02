@@ -1,12 +1,12 @@
 entity Organization {
 	id Long,
-    name String
+    name String required
 
 }
 
 entity ChatRoom {
 	id Long,
-    name String,
+    name String required,
     description String
 }
 

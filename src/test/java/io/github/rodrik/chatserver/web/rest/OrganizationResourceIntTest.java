@@ -125,6 +125,24 @@ public class OrganizationResourceIntTest {
 
     @Test
     @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = organizationRepository.findAll().size();
+        // set the field null
+        organization.setName(null);
+
+        // Create the Organization, which fails.
+
+        restOrganizationMockMvc.perform(post("/api/organizations")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(organization)))
+            .andExpect(status().isBadRequest());
+
+        List<Organization> organizationList = organizationRepository.findAll();
+        assertThat(organizationList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllOrganizations() throws Exception {
         // Initialize the database
         organizationRepository.saveAndFlush(organization);
