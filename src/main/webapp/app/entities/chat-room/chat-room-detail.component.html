@@ -15,7 +15,7 @@
         <dt><span>Organization</span></dt>
         <dd>
             <div *ngIf="chatRoom.organization">
-                <a [routerLink]="['/organization', chatRoom.organization?.id]">{{chatRoom.organization?.id}}</a>
+                <a [routerLink]="['/organization', chatRoom.organization?.id]">{{chatRoom.organization?.name}}</a>
             </div>
         </dd>
     </dl>

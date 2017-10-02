@@ -34,7 +34,7 @@ spring:
     jpa:
         open-in-view: false
         hibernate:
-            ddl-auto: none
+            ddl-auto: validate
             naming:
                 physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
                 implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
