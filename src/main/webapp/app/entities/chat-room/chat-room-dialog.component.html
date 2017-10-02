@@ -27,7 +27,7 @@
             <label class="form-control-label" for="field_organization">Organization</label>
             <select class="form-control" id="field_organization" name="organization" [(ngModel)]="chatRoom.organization" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="organizationOption.id === chatRoom.organization?.id ? chatRoom.organization : organizationOption" *ngFor="let organizationOption of organizations; trackBy: trackOrganizationById">{{organizationOption.id}}</option>
+                <option [ngValue]="organizationOption.id === chatRoom.organization?.id ? chatRoom.organization : organizationOption" *ngFor="let organizationOption of organizations; trackBy: trackOrganizationById">{{organizationOption.name}}</option>
             </select>
         </div>
     </div>
