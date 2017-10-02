@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "chatSession",
+            "otherEntityName": "chatSession",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "message",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171002005521",
+    "entityTableName": "chat_message",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

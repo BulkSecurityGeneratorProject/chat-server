@@ -1,0 +1,25 @@
+entity Organization {
+	id Long,
+    name String
+
+}
+
+entity ChatRoom {
+	id Long,
+    name String,
+    description String
+}
+
+entity ChatSession {
+	id Long
+}
+
+entity ChatMessage {
+	id Long,
+    message String
+}
+
+relationship OneToMany {Organization{rooms} to ChatRoom }
+relationship OneToMany {ChatRoom {sessions} to ChatSession}
+relationship OneToMany {ChatSession {messages} to ChatMessage}
+

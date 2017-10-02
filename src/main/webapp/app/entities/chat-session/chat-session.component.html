@@ -1,0 +1,60 @@
+<div>
+    <h2>
+        <span>Chat Sessions</span>
+        <button class="btn btn-primary float-right jh-create-entity create-chat-session" [routerLink]="['/', { outlets: { popup: ['chat-session-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Chat Session
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="chatSessions">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Chat Room</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let chatSession of chatSessions ;trackBy: trackId">
+                <td><a [routerLink]="['../chat-session', chatSession.id ]">{{chatSession.id}}</a></td>
+                <td>
+                    <div *ngIf="chatSession.chatRoom">
+                        <a [routerLink]="['../chat-room', chatSession.chatRoom?.id ]" >{{chatSession.chatRoom?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../chat-session', chatSession.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'chat-session/'+ chatSession.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'chat-session/'+ chatSession.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

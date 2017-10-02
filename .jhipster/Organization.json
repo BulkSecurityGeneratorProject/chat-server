@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "rooms",
+            "otherEntityName": "chatRoom",
+            "otherEntityRelationshipName": "organization"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171002005518",
+    "entityTableName": "organization",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

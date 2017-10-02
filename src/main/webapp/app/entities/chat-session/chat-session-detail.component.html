@@ -1,0 +1,27 @@
+
+<div *ngIf="chatSession">
+    <h2><span>Chat Session</span> {{chatSession.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Chat Room</span></dt>
+        <dd>
+            <div *ngIf="chatSession.chatRoom">
+                <a [routerLink]="['/chat-room', chatSession.chatRoom?.id]">{{chatSession.chatRoom?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'chat-session/'+ chatSession.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
